@@ -10,11 +10,8 @@ function calcular($n1, $n2) {
 
     while ($resto >= $n2) {
         $resto -= $n2;
-        echo $n1 . '-' . $n2 . '=' . $cociente;
         $cociente++;
     }
-
-    
 }
 
 calcular($num1, $num2);
