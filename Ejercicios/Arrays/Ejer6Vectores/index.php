@@ -1,22 +1,41 @@
 <?php
+    header("Content-Type:application/json");
 
-$vector = range(1,100);
+    require 'index_SinS.php';
 
-function rellenarVector(&$v) {
-    for ($i=0; $i < count($v); $i++) { 
-        $v[$i] = rand(1,100);
+    $requestMethod = $_SERVER["REQUEST_METHOD"];
+    $paths = $_SERVER['REQUEST_URI'];
+    $args = explode('/', $paths);
+
+    unset($args[0]);
+
+    $vector = range(1,100);
+    $num = $args[1];
+
+    rellenarVector($vector);
+
+    if ($requestMethod == 'GET') {
+        if ($args[1] > 100 || $args[1] < 1 || !is_numeric($args[1])) {
+            $cod = 200;
+            $mes = 'Numero para buscar demasiado alto o bajo';
+            header("HTTP/1.1 " . $cod . ' ' . $mes);
+
+            echo json_encode(['cod' => $cod,
+                            'mes' => $mes]);
+        } else {
+            $cod =202;
+            $mes = 'Todo OK';
+            header("HTTP/1.1 " . $cod . ' ' . $mes);
+
+            echo json_encode('El ' . $num . ' se repite ' . 
+            aparecer($vector, $num));
+        } 
+    } else {
+        $cod = 200;
+        $mes = 'Verbo no soportado';
+        header("HTTP/1.1 " . $cod . ' ' . $mes);
+
+        echo json_encode(['cod' => $cod,
+                        'mes' => $mes]);
     }
-}
-
-rellenarVector($vector);
-print_r($vector); 
-
-function aparecer($num) {
-    $contador = 0;
-    
-    
-
-    return $contador;
-}
-
 ?>

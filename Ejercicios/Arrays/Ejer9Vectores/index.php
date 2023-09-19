@@ -1,28 +1,30 @@
 <?php
+    header("Content-Type:application/json");
 
-// $n = '3 0 0 3';
-// $array = explode(' ',$n);
+    require 'index_SinS.php';
 
-$n = '3003';
-$array = str_split($n);
-print_r($array);
+    $requestMethod = $_SERVER["REQUEST_METHOD"];
+    $paths = $_SERVER['REQUEST_URI'];
+    $args = explode('/', $paths);
 
-function revertirNum(&$n) {
-    $rev = array_reverse($n);
-    return $rev;
-}
+    unset($args[0]);
 
-$rev_num = revertirNum($array);
-print_r($rev_num);
+    $num = $args[1];
+    $array = str_split($num);
 
-function comprobarCapicua(&$derecho, &$reves) {
-    if ($derecho == $reves) {
-        echo 'Los números son capicua';
+    $rev = revertirNum($array);
+    comprobarCapicua($array, $rev);
+
+    if ($requestMethod == 'GET') {
+        
+
     } else {
-        echo 'Los números no son capicua';
-    }
-}
+        $cod = 200;
+        $mes = 'Verbo no soportado';
+        header("HTTP/1.1 " . $cod . ' ' . $mes);
 
-comprobarCapicua($array, $rev_num);
+        echo json_encode(['cod' => $cod,
+                        'mes' => $mes]);        
+    }
 
 ?>
