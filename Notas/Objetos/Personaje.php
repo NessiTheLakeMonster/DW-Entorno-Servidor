@@ -2,7 +2,7 @@
 
 // Por defecto los atributos son privados y los metodos publicos
 class Personaje {
-    private $nombre;
+    private $nombre; // El json_encode no tiene en cuenta los atributos privados
     private $edad;
 
     static $CONT = 18; // Companion object

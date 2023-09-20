@@ -11,7 +11,7 @@ class Factoria {
     static function generaVariosPersonajes($cuantos = 4){
         $v = [];
         for ($i=0; $i < $cuantos; $i++) { 
-            $V[] = self::generaPersonaje();
+            $v[] = self::generaPersonaje();
         }
         return $v;
     }
