@@ -3,14 +3,14 @@
 require_once('Factoria.php');
 
 class Coche {
-    private $marca;
-    private $modelo;
-    private $color;
-    private $matricula;
+    public $marca;
+    public $modelo;
+    public $color;
+    public $matricula;
 
-    private $velocidad;
-    private $marcha;
-    private $arrancado = false;
+    public $velocidad;
+    public $marcha;
+    public $arrancado = false;
 
     const velocidadMax = 120;
 
