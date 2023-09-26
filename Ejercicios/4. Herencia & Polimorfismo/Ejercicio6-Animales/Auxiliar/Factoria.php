@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Factoria {
     static $nombres = ['Nombre1', 'Nombre2', 'Nombre3'];
@@ -30,11 +30,15 @@ class Factoria {
             rand(true, false));
     }
 
+    static function generarElefante() {
+
+    }
+
     static function generarMultAnimales($cuantos = 4) {
         $v = [];
 
         for ($i=0; $i < $cuantos; $i++) { 
-            $aleatorio = rand(1,3);
+            $aleatorio = rand(1,4);
             
             switch ($aleatorio) {
                 case 1:
@@ -45,6 +49,10 @@ class Factoria {
                     break;
                 case 3:
                     $v[] = self::generarGato();
+                    break;
+                case 4:
+                    $v[] = self::generarElefante();
+                    break;
             }
         }
 

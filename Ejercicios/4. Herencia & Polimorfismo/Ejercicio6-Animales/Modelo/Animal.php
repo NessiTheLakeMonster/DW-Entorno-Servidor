@@ -49,7 +49,7 @@ class Animal {
     // ---------------- Métodos ---------------------------------
 
     public function vacunar() { // Método comun
-
+        return $this-> nombre . ' se ha vacunado';
     }
 
     public function comer() { // Metodo comun
@@ -57,7 +57,7 @@ class Animal {
     }
 
     public function dormir() { // Metodo comun
-
+        return $this-> nombre . ' se ha dormido';
     }
 
     public function hacerRuido() {
@@ -65,15 +65,14 @@ class Animal {
     }
 
     public function hacerCaso($n) {
-        $ruido = false;
-        $numero = rand(1, 10);
+        $caso = false;
+        $numero = rand(1, 100);
 
         if ($numero <= $n) {
-            $ruido = true;
+            $caso = true;
         }
 
-        return $ruido;
-
+        return $caso;                                        
     }
 
     // --------------------------------------------------------------
