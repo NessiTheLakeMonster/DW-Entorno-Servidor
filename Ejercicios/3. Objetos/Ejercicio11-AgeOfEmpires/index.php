@@ -21,6 +21,19 @@ if ($requestMethod == 'POST') {
 } elseif ($requestMethod == 'GET') {
     $c1 = Factoria::generarCivilizacion('ESP', 'Isabel I', 150);
     $c2 = Factoria::generarCivilizacion('BIZ', 'Constantino II', 150);
-}
 
-?>
+    $aldeanosC1 = [];
+    $aldeanosC2 = [];
+
+    for ($i=0; $i < 5; $i++) { 
+        $aC1 = Factoria::generarAldeano($c1);
+        $aC1 -> setSalud(200);
+        array_push($aldeanosC1, $aC1);
+
+        $aC2 = Factoria::generarAldeano($c2);
+        $aC2 -> setSalud(250);
+        array_push($aldeanosC1, $aC2);
+    }
+
+    echo json_encode($aldeanosC1);
+}

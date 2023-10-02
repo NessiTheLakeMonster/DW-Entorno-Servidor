@@ -5,7 +5,7 @@ class Aldeano {
     public $salud;
 
     public function __construct($civilizacion){
-        $this-> salud = $this ->getSalud();
+        $this-> salud = $this -> getSalud();
         $this->civilizacion = $civilizacion;
     }
 
@@ -22,5 +22,3 @@ class Aldeano {
 
 
 }
-
-?>
