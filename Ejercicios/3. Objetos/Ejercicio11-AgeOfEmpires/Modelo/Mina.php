@@ -33,6 +33,10 @@ class Mina {
     public function addAldeano($a) {
         return $this->aldeanosMina.array_push($a);
     }
+
+    public function extraerRecursos() {
+        
+    }
 }
 
 ?>

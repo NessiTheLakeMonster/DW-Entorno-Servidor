@@ -10,9 +10,6 @@ class Factoria {
             rand(100, 500));return $c;
     }
 
-    /** 
-     * 
-     */
     static function generarCivilizacion($nombre, $rey, $almacen) {
         $c = new Civilizacion($nombre, $rey, $almacen);
         return $c;
