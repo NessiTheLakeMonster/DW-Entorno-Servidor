@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__.'/Auxiliar/Conexion.php';
-require_once __DIR__.'/Auxiliar/Factoria.php';
-require_once __DIR__.'/Modelo/Tablero.php';
+require_once __DIR__.'Conexion.php';
+require_once __DIR__.'Partida.php';
+require_once __DIR__.'Controlador.php';
 
 header("Content-Type:application/json");
 $requestMethod = $_SERVER["REQUEST_METHOD"];
@@ -13,7 +13,12 @@ $argus = explode('/', $paths);
 unset($argus[0]);
 
 if ($requestMethod == 'GET') {
+    if ($argus[1] == '') {
+        Controlador::allPartidas();
+
+
+    }
 
 } else if ($requestMethod == 'POST') {
-    
+
 }

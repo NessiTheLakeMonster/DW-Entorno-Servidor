@@ -33,4 +33,17 @@ class Controlador
             echo json_encode($respuesta);
         }
     }
+
+    static function allPartidas() {
+        $arrayPartidas = Conexion::seleccionarTodasPartidas();
+        $cod = 201;
+        $mes = "TODO OK";
+        header(Constantes::$headerMssg . $cod . ' ' . $mes);
+        $respuesta = [
+            'Cod:' => $cod,
+            'Mensaje:' => $mes,
+            'Personas' => $arrayPartidas
+        ];
+        echo json_encode($respuesta);
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 class Constantes
 {
     static $headerMssg = "HTTP/1.1 ";

@@ -21,6 +21,8 @@ class Conexion
             die();
         }
 
+        echo $conexion->host_info . "<br>";
+
         return $conexion;
     }
 

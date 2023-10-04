@@ -3,7 +3,7 @@
 
 // Utilizando la forma OO.
 try {
-    $conexion = new mysqli('localhost', 'fernando', 'Chubaca2024', 'ejemplo');
+    $conexion = new mysqli('localhost', 'root', '', 'ejemplo');
 } catch (Exception $e) {
     echo "Fallo al conectar a MySQL: (" . $e->getMessage() . ") <br>";
     die();
