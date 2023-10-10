@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-}); */
-
-Route::get('/', function() {
-    $nota = 10;
-    return response() -> json(['curso' => 'DAW', 'nota' => $nota], 200);
 });
