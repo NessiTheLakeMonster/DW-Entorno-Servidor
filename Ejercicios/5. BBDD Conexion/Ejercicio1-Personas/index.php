@@ -36,57 +36,60 @@ if ($requestMethod == 'GET') {
 }
 
 if ($requestMethod == 'POST') {
-        if ($argus[1] == '') {
-            //POST, registro de una persona.
-            $data = json_decode($datosRecibidos, true);
-            Controlador::insertarPersona(new Persona($data['dni'],$data['nombre'],$data['clave'],$data['tfno']));
-        }
+    if ($argus[1] == '') {
+        //POST, registro de una persona.
+        $data = json_decode($datosRecibidos, true);
+        Controlador::insertarPersona(
+            new Persona($data['dni'], 
+            $data['nombre'], 
+            $data['clave'], 
+            $data['tfno']));
+    }
 
-if ($requestMethod == 'DELETE') {
-            if (count($argus) > 1) {
-                $cod = 401;
-                $mes = "Sobran argumentos";
-                header(Constantes::$headerMssg . $cod . ' ' . $mes);
-                $respuesta = [
-                    'Cod:' => $cod,
-                    'Mensaje:' => $mes,
-                ];
-                echo json_encode($respuesta);
-            } else {
-                if ($argus[1] != '') {
-                    $resultado = Conexion::borrarPersona($argus[1]);
-                    $cod = 201;
-                    $mes = "Todo OK";
-                    header(Constantes::$headerMssg . $cod . ' ' . $mes);
-                    $respuesta = [
-                        'Cod:' => $cod,
-                        'Mensaje:' => $mes,
-                        'Delete' => $resultado
-                    ];
-                    echo json_encode($respuesta);
-                } else {
-                    $cod = 401;
-                    $mes = "Hacen falta argumentos";
-                    header(Constantes::$headerMssg . $cod . ' ' . $mes);
-                    $respuesta = [
-                        'Cod:' => $cod,
-                        'Mensaje:' => $mes,
-                    ];
-                }
-            }
+    if ($requestMethod == 'DELETE') {
+        if (count($argus) > 1) {
+            $cod = 401;
+            $mes = "Sobran argumentos";
+            header(Constantes::$headerMssg . $cod . ' ' . $mes);
+            $respuesta = [
+                'Cod:' => $cod,
+                'Mensaje:' => $mes,
+            ];
+            echo json_encode($respuesta);
         } else {
-            if ($requestMethod == 'PUT') {
-                $resultado = Conexion::modificarPersona($argus[1], $data);
+            if ($argus[1] != '') {
+                $resultado = Conexion::borrarPersona($argus[1]);
                 $cod = 201;
                 $mes = "Todo OK";
                 header(Constantes::$headerMssg . $cod . ' ' . $mes);
                 $respuesta = [
                     'Cod:' => $cod,
                     'Mensaje:' => $mes,
-                    'Modificacion:' => $resultado
+                    'Delete' => $resultado
                 ];
                 echo json_encode($respuesta);
+            } else {
+                $cod = 401;
+                $mes = "Hacen falta argumentos";
+                header(Constantes::$headerMssg . $cod . ' ' . $mes);
+                $respuesta = [
+                    'Cod:' => $cod,
+                    'Mensaje:' => $mes,
+                ];
             }
         }
+    } else {
+        if ($requestMethod == 'PUT') {
+            $resultado = Conexion::modificarPersona($argus[1], $data);
+            $cod = 201;
+            $mes = "Todo OK";
+            header(Constantes::$headerMssg . $cod . ' ' . $mes);
+            $respuesta = [
+                'Cod:' => $cod,
+                'Mensaje:' => $mes,
+                'Modificacion:' => $resultado
+            ];
+            echo json_encode($respuesta);
+        }
     }
-
+}

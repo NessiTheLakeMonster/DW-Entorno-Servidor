@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-echo($_SERVER['REQUEST_METHOD']);
-echo($_SERVER['REQUEST_URI']);
+echo ($_SERVER['REQUEST_METHOD']);
+echo ($_SERVER['REQUEST_URI']);
 $datosRecibidos = file_get_contents("php://input");
 // print_r($datosRecibidos);
 $data = json_decode($datosRecibidos, true);
@@ -23,7 +23,7 @@ $data = json_decode($datosRecibidos, true);
       "cod":202,
       "desc":"ED"
     }
-   ]
+  ]
 }
 */
 echo $data['nombre'];
