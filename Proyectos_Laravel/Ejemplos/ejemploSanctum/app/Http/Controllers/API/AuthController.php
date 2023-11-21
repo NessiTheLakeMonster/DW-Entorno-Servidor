@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
@@ -25,7 +27,28 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $messages = [
+            'unique' => 'Ese correo ya existe en la bd',
+            'email' => 'El campo no se ajusta a un correo estándar',
+            'same' => 'Los campos :password y :confirm_password deben coincidir',
+            'max' => 'El campo se excede del tamaño máximo',
+            'between' => 'El campo :edad no está entre :18,100'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:20',
+            'email' => 'required|email|max:255|unique:users', // Con esto evitamos que ocurra el error de la clave duplicada.
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+            'edad' => 'numeric|integer|between:18,90'
+        ], $messages);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 202);
+        }
+
         $input = $request->all();
+
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
