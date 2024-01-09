@@ -1,4 +1,4 @@
-# Comandos para creación de Proyecto en Node
+# Comandos para creación de Proyectos en Node
 
 Inicializacion de node
 ```bash
@@ -24,4 +24,39 @@ npm install dotenv --save
 Para generar la carpeta ``node_modules``
 ```bash
 npm install
+```
+
+----
+
+#### Para uso con Base de Datos
+
+Se necesita la dependencia de `mysql`
+```bash
+npm install mysql2
+```
+
+----
+
+#### Problemas con cors
+
+Para instalar `cors`, debe aparecer como dependencia en `package.json`
+```bash
+npm install cors
+```
+En el archivo situado en `/app/server.js`, para evitar problemas de `cors`
+```js
+middlewares() {
+    this.app.use(cors());
+}
+```
+
+----
+
+## Estructura de carpetas estandar 
+
+```
+app
+models
+controllers
+
 ```

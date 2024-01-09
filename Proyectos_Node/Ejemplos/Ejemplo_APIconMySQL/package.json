@@ -1,5 +1,5 @@
 {
-  "name": "ejercicio1",
+  "name": "midotenv",
   "version": "1.0.0",
   "description": "",
   "main": "./app/app.js",
@@ -11,8 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
