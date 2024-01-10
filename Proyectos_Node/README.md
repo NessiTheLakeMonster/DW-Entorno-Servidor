@@ -37,6 +37,14 @@ npm install mysql2
 
 ----
 
+#### Paquete para incluir el validator
+
+```bash
+npm install express-validator
+```
+
+----
+
 #### Problemas con cors
 
 Para instalar `cors`, debe aparecer como dependencia en `package.json`
