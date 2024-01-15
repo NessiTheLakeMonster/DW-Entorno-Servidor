@@ -15,10 +15,10 @@ class Conexion {
             port: process.env.DB_PORT
         });
     }
- 
-    
+
+
     conectar = () => {
-        this.connection.connect( (err) => {
+        this.connection.connect((err) => {
             if (err) {
                 console.error('Error de conexion: ' + err.stack);
                 return;
@@ -28,33 +28,33 @@ class Conexion {
     }
 
     desconectar = () => {
-        this.connection.end( (err) => {
+        this.connection.end((err) => {
             if (err) {
                 console.error('Error de conexion: ' + err.stack);
                 return;
             }
-        console.log('Desconectado con éxito');
+            console.log('Desconectado con éxito');
         });
     }
 
 
-    query = ( sql, values ) => {
-    //Devolver una promesa
-    return new Promise(( resolve, reject ) => {
-        this.connection.query(sql, values, ( err, rows) => {
-            if ( err ) {
-                reject( err )
-            } else {
-                if (rows.length === 0) {
-                    reject(err);
+    query = (sql, values) => {
+        //Devolver una promesa
+        return new Promise((resolve, reject) => {
+            this.connection.query(sql, values, (err, rows) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    if (rows.length === 0) {
+                        reject(err);
+                    }
+                    resolve(rows)
                 }
-                resolve( rows )
-            }
             })
         })
     }
 
-    getlistado = async() => {
+    getlistado = async () => {
         let resultado = [];
         this.conectar();
         try {
@@ -68,7 +68,7 @@ class Conexion {
     }
 
 
-    getUsuario = async(dni) => {
+    getUsuario = async (dni) => {
         let resultado = [];
         this.conectar();
         try {
@@ -81,7 +81,7 @@ class Conexion {
         return resultado;
     }
 
-    dniExisteValidator = async(dni) => {
+    dniExisteValidator = async (dni) => {
         let resultado = [];
         this.conectar();
         try {
@@ -92,14 +92,14 @@ class Conexion {
             this.desconectar();
         } finally {
             console.log(`Res: ${resultado.length}`)
-            if (resultado.length != 0){
+            if (resultado.length != 0) {
                 throw new CustomError('DNI existe');
             }
         }
         return resultado;
     }
 
-    registrarUsuario = async(dni, nombre, clave, tfno) => {
+    registrarUsuario = async (dni, nombre, clave, tfno) => {
         let resultado = 0;
         this.conectar();
         try {
@@ -112,7 +112,7 @@ class Conexion {
         return resultado;
     }
 
-    modificarUsuario = async(dni, nombre, clave, tfno) => {
+    modificarUsuario = async (dni, nombre, clave, tfno) => {
         let resultado = 0;
         this.conectar();
         try {
@@ -125,7 +125,7 @@ class Conexion {
         return resultado;
     }
 
-    borrarUsuario = async(dni) => {
+    borrarUsuario = async (dni) => {
         let resultado = 0;
         this.conectar();
         try {
@@ -138,7 +138,7 @@ class Conexion {
         return resultado;
     }
 
-    
+
 }
 
 module.exports = Conexion;

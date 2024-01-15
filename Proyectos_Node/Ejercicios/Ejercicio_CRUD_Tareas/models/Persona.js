@@ -3,10 +3,11 @@ var faker = require('faker')
 
 class Persona {
 
-    constructor(dni, nombre, apellido) {
-        this.dni = dni;
+    constructor(nombre, apellido, email, password) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.email = email;
+        this.password = password;
     }
 
 }
