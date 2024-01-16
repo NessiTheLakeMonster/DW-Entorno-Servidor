@@ -1,20 +1,16 @@
-const mocker = require('mocker-data-generator').default;
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 
-const tareaSchema = {
-    nombre: {
-        faker: 'name.firstName'
-    },
-    descripcion: {
-        faker: 'name.lastName'
-    },
-    duracion: {
-        faker: 'random.number'
-    },
-    dificultad: {
-        faker: 'random.number'
-    },
-    terminado: {
-        faker: 'random.boolean'
-    }
-};
+function tareaFactory() {
+    const dificultades = ['baja', 'media', 'alta'];
+    const indiceAleatorio = Math.floor(Math.random() * dificultades.length);
+    const dificultad = dificultades[indiceAleatorio];
+
+    return {
+        descripcion: faker.lorem.sentence(),
+        duracion: faker.number.int(1),
+        dificultad: dificultad,
+        terminada:  Math.round(Math.random()),
+    };
+}
+
+module.exports = tareaFactory;

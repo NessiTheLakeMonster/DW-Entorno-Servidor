@@ -12,20 +12,4 @@ class Persona {
 
 }
 
-var user = {
-    dni: {
-        faker: 'random.number'
-    },
-    nombre: {
-        faker: 'name.firstName'
-    },
-    apellido: {
-        faker: 'name.lastName'
-    }
-}
-
-var Persona = mocker()
-    .schema('user', user, 5)
-    .buildSync()
-
 module.exports = Persona;
