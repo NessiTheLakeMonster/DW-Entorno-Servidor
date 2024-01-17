@@ -43,6 +43,23 @@ npm install mysql2
 npm install express-validator
 ```
 
+---
+
+#### Uso de JWT (JSON Web Token)
+
+Para poder hacer uso de tokens en la aplicación. Por defecto no existe una tabla en la base de datos donde se encuentren todos los token, se guardan en memoria. Si se cierra Node se revocan todos los tokens existentes en ese mismo momento.
+```bash
+npm install jsonwebtoken
+```
+
+----
+
+#### Para incluir datos generados con faker
+
+```bash
+npm i @faker-js/faker
+```
+
 ----
 
 #### Problemas con cors
@@ -58,16 +75,24 @@ middlewares() {
 }
 ```
 
+---
+
+#### Bcrypt
+
+```bash
+npm i bcrypt
+```
+
 ----
 
-#### Uso de Sequelize
+## Sequelize
 
 Para poder instalar `Sequelize` para uso de base de datos, se hace con el siguiente paquete npm
 ```bash
 npm install sequelize
 ```
 
-##### Migrations con Sequelize
+#### Migrations con Sequelize
 
 Para consultar la documentación oficial de las migrations con Sequelize [aquí.](https://sequelize.org/docs/v6/other-topics/migrations/)
 
@@ -82,7 +107,9 @@ npx sequelize-cli init
 ```
 
 Se crea por defecto en la ruta `config/config.json` para las bases de datos
-<p style="color: red;">[ SE DEBE CAMBIAR LA EXTENSIÓN JSON POR JS PERO SE PONE EXACTAMENTE LO MISMO ]</p>
+
+> [!CAUTION]
+> SE DEBE CAMBIAR LA EXTENSIÓN JSON POR JS PERO SE PONE EXACTAMENTE LO MISMO
 
 La que se usará para hacer pruebas sera la de `development`, una vez este todo listo se usará la de `production`
 ```json
@@ -129,13 +156,16 @@ Para deshacer (hacer un rollback) migrations:
 npx sequelize-cli db:migrate:undo
 ```
 
----
+#### Seeders
 
-#### Uso de JWT (JSON Web Token)
-
-Para poder hacer uso de tokens en la aplicación. Por defecto no existe una tabla en la base de datos donde se encuentren todos los token, se guardan en memoria. Si se cierra Node se revocan todos los tokens existentes en ese mismo momento.
+Para crear seeder del modelo de `User`:
 ```bash
-npm install jsonwebtoken
+npx sequelize-cli seed:generate --name userSeeder
+```
+
+Para ejecutar los seeders:
+```bash
+npx sequelize-cli db:seed:all
 ```
 
 ---

@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
-   
+
     static associate(models) {
 
     }
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     comentario: DataTypes.STRING,
     puntuacion: DataTypes.STRING,
     userId: DataTypes.INTEGER
-  }, 
-  {
-    sequelize,
-    modelName: 'Comment',
-    tableName: 'comments'
-  });
+  },
+    {
+      sequelize,
+      modelName: 'Comment',
+      tableName: 'comments'
+    });
   return Comment;
 };

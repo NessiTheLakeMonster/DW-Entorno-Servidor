@@ -7,14 +7,14 @@ class ConexionSequilze {
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
             host: process.env.DB_HOST,
-            dialect:process.env.DB_DIALECT, /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+            dialect: process.env.DB_DIALECT, /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
             pool: {
                 max: 5,
                 min: 0,
                 acquire: 30000,
                 idle: 10000
-             },
-          });
+            },
+        });
     }
 
     /**
@@ -37,32 +37,32 @@ class ConexionSequilze {
         process.on('SIGINT', () => conn.close())
     }
 
-    getlistado = async() => {
+    getlistado = async () => {
         let resultado = [];
         this.conectar();
         console.log(`Accediendo a los datos...`)
         resultado = await models.User.findAll({
             attributes: ['id', 'firstName', 'lastName', 'email']
-          });
+        });
         this.desconectar();
         return resultado;
     }
 
-    getUsuario = async(dni) => {
+    getUsuario = async (dni) => {
         let resultado = [];
         this.conectar();
         resultado = await models.User.findByPk(dni);
         this.desconectar();
-        if (!resultado){
+        if (!resultado) {
             throw error;
         }
         return resultado;
     }
 
-    registrarUsuario = async(body) => {
+    registrarUsuario = async (body) => {
         let resultado = 0;
         this.conectar();
-        try{
+        try {
             // const usuarioNuevo = new Persona(body); //Con esto añade los timeStamps.
             // await usuarioNuevo.save();
             const usuarioNuevo = await models.User.create(body);
@@ -73,17 +73,17 @@ class ConexionSequilze {
             } else {
                 console.log('Ocurrió un error desconocido: ', error);
             }
-            throw error; 
+            throw error;
         } finally {
             this.desconectar();
         }
         return resultado;
     }
 
-    modificarUsuario = async(dni, body) => {
+    modificarUsuario = async (dni, body) => {
         this.conectar();
         let resultado = await models.User.findByPk(dni);
-        if (!resultado){
+        if (!resultado) {
             this.desconectar();
             throw error;
         }
@@ -92,10 +92,10 @@ class ConexionSequilze {
         return resultado;
     }
 
-    borrarUsuario = async(dni) => {
+    borrarUsuario = async (dni) => {
         this.conectar();
         let resultado = await models.User.findByPk(dni);
-        if (!resultado){
+        if (!resultado) {
             this.desconectar();
             throw error;
         }
@@ -106,7 +106,7 @@ class ConexionSequilze {
 
 
     //----------------------------------------
-    getComments = async() => {
+    getComments = async () => {
         let resultado = [];
         this.conectar();
         resultado = await models.Comment.findAll();
@@ -114,18 +114,18 @@ class ConexionSequilze {
         return resultado;
     }
 
-    getCommentsId = async(idU) => {
+    getCommentsId = async (idU) => {
         let resultado = [];
         this.conectar();
         console.log(idU)
-        resultado = await models.User.findAll({ 
+        resultado = await models.User.findAll({
             where: { id: { [Op.eq]: idU } },
             include: [{
-              model: models.Comment,
-              as: 'commentsUser'
+                model: models.Comment,
+                as: 'commentsUser'
             }],
             attributes: ['id', 'firstName', 'lastName', 'email']
-           });
+        });
         this.desconectar();
         return resultado;
     }
