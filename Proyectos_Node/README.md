@@ -87,7 +87,7 @@ npm i bcrypt
 
 ## Sequelize
 
-Para poder instalar `Sequelize` para uso de base de datos, se hace con el siguiente paquete npm
+Para poder instalar `Sequelize` para uso de base de datos, se hace con el siguiente paquete `npm`
 ```bash
 npm install sequelize
 ```
@@ -110,6 +110,14 @@ Se crea por defecto en la ruta `config/config.json` para las bases de datos
 
 > [!CAUTION]
 > SE DEBE CAMBIAR LA EXTENSIÓN JSON POR JS PERO SE PONE EXACTAMENTE LO MISMO
+
+>[!IMPORTANT]
+> A veces debe cambiarse esta línea en el archivo encontrado en la ruta de `models/index.js`
+> ```js
+> const config = require(__dirname + '/../config/config.js')[env];
+> ```
+
+
 
 La que se usará para hacer pruebas sera la de `development`, una vez este todo listo se usará la de `production`
 ```json
