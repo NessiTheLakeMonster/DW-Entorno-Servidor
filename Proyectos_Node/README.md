@@ -178,6 +178,17 @@ npx sequelize-cli db:seed:all
 
 ---
 
+## WebSockets
+
+Se debe instalar la dependencia necesaria en el paquete `npm`
+```bash
+npm install socket.io
+```
+
+
+
+---
+
 ## Estructura de carpetas estándar 
 
 ```
