@@ -185,7 +185,53 @@ Se debe instalar la dependencia necesaria en el paquete `npm`
 npm install socket.io
 ```
 
+---
 
+## Subida de fotos
+
+Genera numeros unicos en base de una semilla aleatoria, nunca va a generar dos iguales. Es útil para las fotos y para demás campos
+```bash
+npm install uuid
+```
+
+
+```bash
+npm install express-fileupload
+```
+
+#### Subida de fotos mediante `Cloudinary`
+
+>[!IMPORTANT]
+> Se necesita crear cuenta para poder utilizar esta acción.<br>
+> [Página Web Oficial](https://cloudinary.com/)
+
+Se necesitan ambas dependencias, se ven en el archivo `package.json`
+```json
+{
+  "@cloudinary/url-gen": "^1.16.0",
+  "cloudinary": "^1.41.3"
+}
+```
+
+>[!CAUTION]
+> Aunque se use el método de cloudninary se sigue necesitando instalar el paquete de 
+> ```bash
+> npm install express-fileupload
+> ```
+
+Las cuales son instaladas con los comandos
+```bash
+npm install cloudinary
+npm install @cloudinary/url-gen
+```
+
+Para el correcto funcionamiento se necesitan añadir una serie de campos al archivo `.env`
+```properties
+CLOUDINARY_API_KEY = ".."
+CLOUDINARY_API_SECRET = ".."
+CLOUDINARY_CLOUD_NAME = ".."
+CLOUDINARY_URL = ".."
+```
 
 ---
 
