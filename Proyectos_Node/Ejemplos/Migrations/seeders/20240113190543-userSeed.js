@@ -1,10 +1,10 @@
 'use strict';
 const bcrypt = require('bcrypt');
-const {genUsers} = require('../factories/userFactory')
+const { genUsers } = require('../factories/userFactory')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -14,28 +14,28 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-  //   await queryInterface.bulkInsert('users', [{
-  //     firstName: 'Michael',
-  //     lastName: 'Jordan',
-  //     email: 'mj@bulls.com',
-  //     password: await bcrypt.hash('23', 10),
-  //     createdAt: new Date(),
-  //     updatedAt: new Date()
-  //   },
-  //   {
-  //     firstName: 'Scottie',
-  //     lastName: 'Pippen',
-  //     email: 'sp@bulls.com',
-  //     password: await bcrypt.hash('33', 10),
-  //     createdAt: new Date(),
-  //     updatedAt: new Date()
-  //   }], {});
-  // },
-  const users = await genUsers(4);
-  await queryInterface.bulkInsert('users', users, {});
-},
+    //   await queryInterface.bulkInsert('users', [{
+    //     firstName: 'Michael',
+    //     lastName: 'Jordan',
+    //     email: 'mj@bulls.com',
+    //     password: await bcrypt.hash('23', 10),
+    //     createdAt: new Date(),
+    //     updatedAt: new Date()
+    //   },
+    //   {
+    //     firstName: 'Scottie',
+    //     lastName: 'Pippen',
+    //     email: 'sp@bulls.com',
+    //     password: await bcrypt.hash('33', 10),
+    //     createdAt: new Date(),
+    //     updatedAt: new Date()
+    //   }], {});
+    // },
+    const users = await genUsers(4);
+    await queryInterface.bulkInsert('users', users, {});
+  },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
