@@ -25,7 +25,7 @@ const comentariosGetAsignados = async (req, res) => {
         const comentariosPorUsuario = await Comentario.aggregate([
             {
                 $lookup: {
-                    from: 'usuarios',  
+                    from: 'usuarios',
                     localField: 'idU',
                     foreignField: 'id',
                     as: 'usuario'
@@ -55,7 +55,7 @@ const comentariosGetAsignados = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener comentarios por usuario:', error);
         res.status(500).json({ 'msg': 'Error al obtener comentarios' });
-    }     
+    }
 }
 
 
@@ -70,7 +70,7 @@ const comentarioGetAsignadoA = async (req, res) => {
             },
             {
                 $lookup: {
-                    from: 'usuarios',  
+                    from: 'usuarios',
                     localField: 'idU',
                     foreignField: 'id',
                     as: 'usuario'
@@ -100,7 +100,7 @@ const comentarioGetAsignadoA = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener comentarios por usuario:', error);
         res.status(500).json({ 'msg': 'Error al obtener comentarios' });
-    }     
+    }
 }
 
 

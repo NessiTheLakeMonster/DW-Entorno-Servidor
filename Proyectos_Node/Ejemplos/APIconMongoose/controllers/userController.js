@@ -24,8 +24,8 @@ const usuariosGet = async (req, res) => {
 const usuarioGet = async (req, res) => {
 
     try {
-        const usuario = await UserModel.find({id: req.params.id});
-        if (usuario.length > 0)  {
+        const usuario = await UserModel.find({ id: req.params.id });
+        if (usuario.length > 0) {
             console.log('Usuario encontrado!');
             res.status(200).json(usuario);
         } else {
@@ -44,10 +44,10 @@ const usuariosPost = async (req, res) => {
     try {
         //En lugar de body podemos usar los campos, para un mayor control y coherencia. También podremos combinar con validator y middlewares.
         // UserModel.create({ id, nombre, edad, tfno }  , (err, usuario) => {
-        await UserModel.create(req.body , (err, usuario) => {
+        await UserModel.create(req.body, (err, usuario) => {
             if (err) {
                 console.error('Error al registrar usuario:', err);
-                res.status(500).json({'msg': 'Error al registrar usuario' });
+                res.status(500).json({ 'msg': 'Error al registrar usuario' });
             } else {
                 console.log('Usuario registrado correctamente!');
                 res.status(201).json(usuario);
@@ -70,7 +70,7 @@ const usuariosPut = async (req, res) => {
 
     try {
         //const usuarioActualizado = await UserModel.updateOne({id : req.params.id}, { nombre, edad, tfno }, { new: true });
-        const usuarioActualizado = await UserModel.updateOne({id : req.params.id}, req.body, { new: true });
+        const usuarioActualizado = await UserModel.updateOne({ id: req.params.id }, req.body, { new: true });
         if (usuarioActualizado) {
             console.log('Usuario actualizado correctamente!');
             res.status(200).json(usuarioActualizado);
@@ -88,7 +88,7 @@ const usuariosPut = async (req, res) => {
 const usuariosDelete = async (req, res) => {
 
     try {
-        const usuarioEliminado = await UserModel.deleteOne({id:req.params.id});
+        const usuarioEliminado = await UserModel.deleteOne({ id: req.params.id });
         if (usuarioEliminado.deletedCount > 0) {
             console.log('Usuario eliminado correctamente!');
             res.status(200).json(usuarioEliminado);

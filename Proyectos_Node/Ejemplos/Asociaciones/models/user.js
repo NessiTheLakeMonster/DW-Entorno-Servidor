@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'commentsUser',
       });
-      this.belongsToMany(models.Rol, { through: models.RolAsignado, foreignKey: 'idU', as: 'roles' });
+      this.belongsToMany(models.Rol, 
+        { through: models.RolAsignado, foreignKey: 'idU', as: 'roles' });
     }
   }
   User.init({
